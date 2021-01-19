@@ -24,16 +24,16 @@ public class UserSearchServlet extends HttpServlet {
 	public String getJSON(String userName) {
 		if(userName == null) userName = "";
 		StringBuffer result = new StringBuffer();
-		result.append("{\result\":[");
+		result.append("{\"result\":[");
 		
 		UserDAO userDAO = new UserDAO();
 		ArrayList<User> userList = userDAO.search(userName);
 		
 		for(int i=0; i<userList.size(); i++) {
-			result.append("[{\"value\": \"" + userList.get(0).getUserName() + "\"},");
-			result.append("{\"value\": \"" + userList.get(1).getUserName() + "\"},");
-			result.append("{\"value\": \"" + userList.get(2).getUserName() + "\"},");
-			result.append("{\"value\": \"" + userList.get(3).getUserName() + "\"}],");
+			result.append("[{\"value\": \"" + userList.get(i).getUserName() + "\"},");
+			result.append("{\"value\": \"" + userList.get(i).getUserAge() + "\"},");
+			result.append("{\"value\": \"" + userList.get(i).getUserGender() + "\"},");
+			result.append("{\"value\": \"" + userList.get(i).getUserEmail() + "\"}],");
 		}
 		result.append("]}");
 		return result.toString();
